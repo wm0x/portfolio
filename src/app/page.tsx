@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <div className="bg-background relative flex h-screen w-full flex-col items-center justify-center overflow-hidden rounded-lg border">
       <div className="pointer-events-none z-10 text-center space-y-6">
-        <h1 className="bg-gradient-to-b from-[#ffd319] via-[#ff2975] to-[#8c1eff] bg-clip-text text-7xl leading-none font-bold tracking-tighter text-transparent mb-4">
+        <h1 className="bg-linear-to-b from-[#ffd319] via-[#ff2975] to-[#8c1eff] bg-clip-text text-7xl leading-none font-bold tracking-tighter text-transparent mb-4">
         🛠️
         </h1>
 
