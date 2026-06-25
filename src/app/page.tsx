@@ -1,56 +1,69 @@
 "use client";
-import { RetroGrid } from "../components/ui/retro-grid";
-import { useState, useEffect } from "react";
+import { ReactLenis, useLenis } from "lenis/react";
+import { useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export default function Home() {
-  const [dots, setDots] = useState("");
-  const [fade, setFade] = useState(false);
+import FloatingNavDemo from "../components/ui/floating-navbar-demo";
+import Hero from "../components/main-ui/hero-section/Hero";
+import AboutMe from '../components/main-ui/aboutMe-section/AboutMe';
+import Project from '../components/main-ui/projects-section/Project';
+import Certificates from "../components/main-ui/Certificates-section/Certificates";
+
+function GsapLenisSync() {
+  const lenis = useLenis((scroll) => {
+    ScrollTrigger.update();
+  });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(true);
-      setTimeout(() => {
-        setDots((prev) => (prev.length >= 3 ? "" : prev + "."));
-        setFade(false);
-      }, 200);
-    }, 500);
-    return () => clearInterval(interval);
-  }, []);
+    if (!lenis) return;
+    
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    
+    gsap.ticker.lagSmoothing(0); 
 
+    return () => {
+      gsap.ticker.remove((time) => {
+        lenis.raf(time * 1000);
+      });
+    };
+  }, [lenis]);
+
+  return null;
+}
+
+export default function Home() {
   return (
-    <div className="bg-background relative flex h-screen w-full flex-col items-center justify-center overflow-hidden rounded-lg border">
-      <div className="pointer-events-none z-10 text-center space-y-6">
-        <h1 className="bg-linear-to-b from-[#ffd319] via-[#ff2975] to-[#8c1eff] bg-clip-text text-7xl leading-none font-bold tracking-tighter text-transparent mb-4">
-        🛠️
-        </h1>
+    <ReactLenis root>
+      <GsapLenisSync />
 
-        <p className="text-2xl text-black font-semibold mb-2">
-          شغال عليه والله
-        </p>
+      <div dir="rtl" className="relative min-h-screen  bg-[#252422] w-full text-white">
+        
+        <div className="absolute top-[-10%] right-[-10%] w-[200px] h-[500px] bg-[#FFFCF2] rounded-full mix-blend-screen filter blur-[150px] opacity-40 pointer-events-none"></div>
 
-        <div className="flex flex-col items-center justify-center space-x-1 text-xl text-[#ff2975] font-medium" dir="rtl">
-        <div className="flex space-x-1">
-            {[0, 1, 2].map((index) => (
-              <span
-                key={index}
-                className={`transition-all duration-300 text-black ${
-                  index < dots.length
-                    ? "opacity-100 scale-110"
-                    : "opacity-30 scale-90"
-                } ${fade && index === dots.length ? "animate-pulse" : ""}`}
-                style={{
-                  animationDelay: index * 0.1 + "s",
-                }}
-              >
-                .
-              </span>
-            ))}
-          </div>
-
+        <div className="z-40 relative">
+          <FloatingNavDemo />
         </div>
-      </div>
 
-      <RetroGrid />
-    </div>
+        <div className="relative z-10">
+          <Hero />
+        </div>
+        
+        <div className="w-full border-t border-white/10 bg-[#252422]">
+          <AboutMe />
+        </div>
+
+        <div className="w-full ">
+          <Project/>
+        </div>
+
+        <div>
+        <Certificates/>
+        </div>
+
+      </div>
+    </ReactLenis>
   );
 }

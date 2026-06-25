@@ -4,11 +4,6 @@
 
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-body {
-  font-family: "IBM Plex Sans Arabic", sans-serif;
-}
 
 @theme inline {
   --color-background: var(--background);
