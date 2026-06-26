@@ -58,8 +58,7 @@ function ScrollElement() {
   ];
 
   return (
-    <div className="bg-[#1a1a1a] relative w-full overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/[0.02] to-transparent pointer-events-none" />
+    <div className="bg-[#171717] w-full overflow-hidden">
 
       <section className="max-w-5xl mx-auto px-4 pt-32 pb-20 relative z-10" dir="rtl">
         

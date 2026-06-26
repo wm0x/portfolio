@@ -9,9 +9,10 @@ import Hero from "../components/main-ui/hero-section/Hero";
 import AboutMe from '../components/main-ui/aboutMe-section/AboutMe';
 import Project from '../components/main-ui/projects-section/Project';
 import Certificates from "../components/main-ui/Certificates-section/Certificates";
+import Footer from "../components/main-ui/footer-section/Footer";
 
 function GsapLenisSync() {
-  const lenis = useLenis((scroll) => {
+  const lenis = useLenis(() => {
     ScrollTrigger.update();
   });
 
@@ -39,7 +40,7 @@ export default function Home() {
     <ReactLenis root>
       <GsapLenisSync />
 
-      <div dir="rtl" className="relative min-h-screen  bg-[#252422] w-full text-white">
+      <div dir="rtl" className="relative min-h-screen w-full text-white">
         
         <div className="absolute top-[-10%] right-[-10%] w-[200px] h-[500px] bg-[#FFFCF2] rounded-full mix-blend-screen filter blur-[150px] opacity-40 pointer-events-none"></div>
 
@@ -51,16 +52,20 @@ export default function Home() {
           <Hero />
         </div>
         
-        <div className="w-full border-t border-white/10 bg-[#252422]">
+        <div className="w-full relative z-10">
           <AboutMe />
         </div>
-
-        <div className="w-full ">
+        <div id="certificates-section" className="w-full relative z-20 bg-[#252422]">
+          <Certificates/>
+        </div>
+        
+        {/* قسم المشاريع - أضفنا له معرف وكلاسات التحكم بالطبقات */}
+        <div id="projects-section" className="w-full">
           <Project/>
         </div>
 
-        <div>
-        <Certificates/>
+        <div className="bg-[#252422]">
+        <Footer/>
         </div>
 
       </div>

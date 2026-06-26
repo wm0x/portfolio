@@ -10,6 +10,34 @@ gsap.registerPlugin(ScrollTrigger)
 
 const scroll = { progress: 0, velocity: 0, last: 0 }
 
+function Loader({ loaded }: { loaded: boolean }) {
+    return (
+      <div
+        className={`
+          fixed inset-0 z-[9999]
+          bg-black
+          flex items-center justify-center
+          transition-all duration-1000
+          ${loaded ? "opacity-0 pointer-events-none" : "opacity-100"}
+        `}
+      >
+        <div className="text-center">
+          <h1 className="text-[#CCC5B9] text-5xl font-light mb-8">
+            Ali Alshehri
+          </h1>
+  
+          <div className="w-72 h-[2px] bg-white/10 overflow-hidden rounded-full">
+            <div className="h-full w-full bg-[#CCC5B9] animate-pulse" />
+          </div>
+  
+          <p className="mt-4 text-[#CCC5B9]/50 text-sm tracking-[0.3em] uppercase">
+            Loading Experience
+          </p>
+        </div>
+      </div>
+    );
+  }
+
 function CameraDrift() {
   const { camera } = useThree()
   const mouse = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 })
@@ -38,8 +66,19 @@ function CameraDrift() {
   return null
 }
 
-function CinematicModel({ url, isMobile }: { url: string; isMobile: boolean }) {
+function CinematicModel({
+    url,
+    isMobile,
+    onLoaded,
+  }: {
+    url: string;
+    isMobile: boolean;
+    onLoaded: () => void;
+  }) {
   const { scene } = useGLTF(url)
+  useEffect(() => {
+    onLoaded();
+  }, [scene, onLoaded]);
   const modelRef = useRef<THREE.Group>(null)
   const t = useRef(0)
 
@@ -234,6 +273,7 @@ const SECTIONS: SectionProps[] = [
 ]
 
 export default function Hero() {
+    const [loaded, setLoaded] = useState(false);
   const modelPath = '/3D/myChar.glb'
   const [isMobile, setIsMobile] = useState(false)
   const canvasWrapRef = useRef<HTMLDivElement>(null)
@@ -301,7 +341,7 @@ export default function Hero() {
 
   return (
     <main ref={mainRef} className="relative w-full bg-black" style={{ minHeight: totalHeight }}>
-
+        <Loader loaded={loaded} />
       <div
         ref={canvasWrapRef}
         className="fixed inset-0 z-0 pointer-events-none"
@@ -335,7 +375,7 @@ export default function Hero() {
             <CameraDrift />
 
             <Suspense fallback={null}>
-              <CinematicModel url={modelPath} isMobile={isMobile} />
+              <CinematicModel url={modelPath} isMobile={isMobile}   onLoaded={() => setLoaded(true)}/>
             </Suspense>
 
             <EffectComposer enableNormalPass={false} multisampling={isMobile ? 0 : 4}>

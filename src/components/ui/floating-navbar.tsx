@@ -6,9 +6,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "motion/react";
-import LanguageSwitcherButton from "./LanguageSwitcher";
 import { cn } from "@/src/lib/utils";
-import ThemeSwitcherButton from "./ThemeSwitcher";
 
 export const FloatingNav = ({
   navItems,
@@ -90,10 +88,6 @@ export const FloatingNav = ({
               </motion.a>
             ))}
           </div>
-
-          <div className="h-5 w-px bg-neutral-300/50 dark:bg-white/10" />
-          <ThemeSwitcherButton />
-          <LanguageSwitcherButton />
         </div>
       </motion.div>
     </AnimatePresence>
