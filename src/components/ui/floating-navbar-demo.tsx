@@ -16,7 +16,7 @@ export default function FloatingNavDemo() {
     },
     {
       name: "المشاريع",
-      link: "#contact",
+      link: "#projects",
       icon: (
         <IconMessage className="h-4 w-4 text-neutral-500 dark:text-white" />
       ),

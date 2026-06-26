@@ -51,17 +51,17 @@ export default function Home() {
           <Hero />
         </div>
 
-        <div className="w-full relative z-10">
+        <div id="about" className="w-full relative z-10">
           <AboutMe />
         </div>
         <div
-          id="certificates-section"
+          id="certificates"
           className="w-full relative z-20 bg-[#252422]"
         >
           <Certificates />
         </div>
 
-        <div id="projects-section" className="w-full">
+        <div id="projects" className="w-full">
           <Project />
         </div>
 

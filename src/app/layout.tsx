@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body
-        className={`${thamaniah.className} antialiased [font-feature-settings:'salt'_1]`}
+        className={`${thamaniah.className} antialiased [font-feature-settings:'salt'_1] scroll-smooth`}
       >
         {children}
       </body>
