@@ -55,7 +55,7 @@ export default function FooterSection() {
                 <div className="flex flex-wrap gap-12 md:gap-24">
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-widest text-[#eb5e28] mb-5">
-                      روابط سريعة
+                      لتحميل السيرة
                     </h4>
                     <ul className="space-y-4">
                       <li>
