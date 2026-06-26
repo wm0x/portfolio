@@ -10,14 +10,11 @@ export default function FooterSection() {
     <section dir="rtl" className="w-full rounded-4xl  ">
       <footer className="rounded-4xl ">
         <div className="w-full h-full bg-transparent rounded-4xl ">
-          {/* Sticky dark footer */}
           <div className="sticky z-0 bottom-0 left-0 rounded-4xl ">
-            <div className="relative w-full min-h-[500px] bg-[#252422] flex flex-col justify-between px-8 md:px-16 py-12 rounded-3xl overflow-hidden rounded-4xl text-[#fffcf2]">
+            <div className="relative w-full min-h-[500px] bg-[#252422] flex flex-col justify-between px-8 md:px-16 py-12 rounded-3xl overflow-hidden text-[#fffcf2]">
               
-              {/* Grid texture */}
-              <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(to_right,#fffcf2_1px,transparent_1px),linear-gradient(to_bottom,#fffcf2_1px,transparent_1px)] [background-size:28px_28px]" />
+              <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(to_right,#fffcf2_1px,transparent_1px),linear-gradient(to_bottom,#fffcf2_1px,transparent_1px)] bg-size-[28px_28px]" />
 
-              {/* Noise grain overlay */}
               <div
                 className="absolute inset-0 opacity-[0.04] pointer-events-none rounded-3xl"
                 style={{

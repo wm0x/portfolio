@@ -6,8 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import FloatingNavDemo from "../components/ui/floating-navbar-demo";
 import Hero from "../components/main-ui/hero-section/Hero";
-import AboutMe from '../components/main-ui/aboutMe-section/AboutMe';
-import Project from '../components/main-ui/projects-section/Project';
+import AboutMe from "../components/main-ui/aboutMe-section/AboutMe";
+import Project from "../components/main-ui/projects-section/Project";
 import Certificates from "../components/main-ui/Certificates-section/Certificates";
 import Footer from "../components/main-ui/footer-section/Footer";
 
@@ -18,12 +18,12 @@ function GsapLenisSync() {
 
   useEffect(() => {
     if (!lenis) return;
-    
+
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
     });
-    
-    gsap.ticker.lagSmoothing(0); 
+
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
       gsap.ticker.remove((time) => {
@@ -41,7 +41,6 @@ export default function Home() {
       <GsapLenisSync />
 
       <div dir="rtl" className="relative min-h-screen w-full text-white">
-        
         <div className="absolute top-[-10%] right-[-10%] w-[200px] h-[500px] bg-[#FFFCF2] rounded-full mix-blend-screen filter blur-[150px] opacity-40 pointer-events-none"></div>
 
         <div className="z-40 relative">
@@ -51,23 +50,24 @@ export default function Home() {
         <div className="relative z-10">
           <Hero />
         </div>
-        
+
         <div className="w-full relative z-10">
           <AboutMe />
         </div>
-        <div id="certificates-section" className="w-full relative z-20 bg-[#252422]">
-          <Certificates/>
+        <div
+          id="certificates-section"
+          className="w-full relative z-20 bg-[#252422]"
+        >
+          <Certificates />
         </div>
-        
-        {/* قسم المشاريع - أضفنا له معرف وكلاسات التحكم بالطبقات */}
+
         <div id="projects-section" className="w-full">
-          <Project/>
+          <Project />
         </div>
 
         <div className="bg-[#252422]">
-        <Footer/>
+          <Footer />
         </div>
-
       </div>
     </ReactLenis>
   );

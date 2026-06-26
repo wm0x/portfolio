@@ -16,7 +16,7 @@ export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({
     style={{
       backfaceVisibility: "hidden",
       transformStyle: "preserve-3d",
-      transition: "transform 0.1s ease-out, filter 0.1s ease-out", 
+      transition: "transform 0.1s ease-out, filter 0.1s ease-out",
     }}
   >
     {children}
@@ -63,12 +63,15 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     cardsTop: [] as number[],
   });
 
-  const parsePercentage = useCallback((value: string | number, containerHeight: number) => {
-    if (typeof value === "string" && value.includes("%")) {
-      return (parseFloat(value) / 100) * containerHeight;
-    }
-    return parseFloat(value as string);
-  }, []);
+  const parsePercentage = useCallback(
+    (value: string | number, containerHeight: number) => {
+      if (typeof value === "string" && value.includes("%")) {
+        return (parseFloat(value) / 100) * containerHeight;
+      }
+      return parseFloat(value as string);
+    },
+    []
+  );
 
   const calculateMetrics = useCallback(() => {
     const scroller = scrollerRef.current;
@@ -88,7 +91,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       return top;
     };
 
-    metricsRef.current.cardsTop = cardsRef.current.map((card) => getAbsoluteTop(card));
+    metricsRef.current.cardsTop = cardsRef.current.map((card) =>
+      getAbsoluteTop(card)
+    );
 
     const endElement = useWindowScroll
       ? (document.querySelector(".scroll-stack-end") as HTMLElement | null)
@@ -107,7 +112,10 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const { containerHeight, cardsTop, endElementTop } = metricsRef.current;
 
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
-    const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
+    const scaleEndPositionPx = parsePercentage(
+      scaleEndPosition,
+      containerHeight
+    );
 
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
@@ -119,7 +127,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
       let scaleProgress = 0;
       if (scrollTop >= triggerStart && scrollTop <= triggerEnd) {
-        scaleProgress = (scrollTop - triggerStart) / (triggerEnd - triggerStart);
+        scaleProgress =
+          (scrollTop - triggerStart) / (triggerEnd - triggerStart);
       } else if (scrollTop > triggerEnd) {
         scaleProgress = 1;
       }
@@ -131,7 +140,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       let blur = 0;
       if (blurAmount) {
         const topCardIndex = cardsTop.findIndex(
-          (top, idx) => top - stackPositionPx - itemStackDistance * idx > scrollTop
+          (top, idx) =>
+            top - stackPositionPx - itemStackDistance * idx > scrollTop
         );
         if (topCardIndex !== -1 && i < topCardIndex) {
           blur = Math.max(0, (topCardIndex - i) * blurAmount);
@@ -142,7 +152,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       const isPinned = scrollTop >= triggerStart && scrollTop <= pinEnd;
 
       if (isPinned) {
-        translateY = scrollTop - cardTop + stackPositionPx + itemStackDistance * i;
+        translateY =
+          scrollTop - cardTop + stackPositionPx + itemStackDistance * i;
       } else if (scrollTop > pinEnd) {
         translateY = pinEnd - cardTop + stackPositionPx + itemStackDistance * i;
       }
@@ -153,7 +164,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
     if (cardsRef.current.length > 0 && onStackComplete) {
       const lastIndex = cardsRef.current.length - 1;
-      const lastCardStart = cardsTop[lastIndex] - stackPositionPx - itemStackDistance * lastIndex;
+      const lastCardStart =
+        cardsTop[lastIndex] - stackPositionPx - itemStackDistance * lastIndex;
       const isComplete = scrollTop >= lastCardStart;
       if (isComplete) onStackComplete();
     }
@@ -176,7 +188,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         ? document.querySelectorAll(".scroll-stack-card")
         : scrollerRef.current?.querySelectorAll(".scroll-stack-card") ?? []
     ) as HTMLElement[];
-    
+
     cardsRef.current = cards;
 
     cards.forEach((card, i) => {
@@ -220,7 +232,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     targetElement?.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", calculateMetrics);
 
-    updateTransforms(); 
+    updateTransforms();
 
     return () => {
       targetElement?.removeEventListener("scroll", onScroll);
@@ -232,11 +244,21 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
   return (
     <div
-      className={`relative w-full h-full ${useWindowScroll ? 'overflow-visible' : 'overflow-y-auto overflow-x-visible'} ${className}`.trim()}
+      className={`relative w-full h-full ${
+        useWindowScroll
+          ? "overflow-visible"
+          : "overflow-y-auto overflow-x-visible"
+      } ${className}`.trim()}
       ref={scrollerRef}
       style={!useWindowScroll ? { WebkitOverflowScrolling: "touch" } : {}}
     >
-      <div className={`scroll-stack-inner w-full ${useWindowScroll ? '' : 'pt-[20vh] px-20 pb-[15rem] md:pb-[5rem] min-h-screen'}`}>
+      <div
+        className={`scroll-stack-inner w-full ${
+          useWindowScroll
+            ? ""
+            : "pt-[20vh] px-20 pb-60 md:pb-20 min-h-screen"
+        }`}
+      >
         {children}
         <div className="scroll-stack-end w-full h-px" />
       </div>
