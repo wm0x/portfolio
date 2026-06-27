@@ -47,16 +47,16 @@ export default function Home() {
           <FloatingNavDemo />
         </div>
 
-        <div className="relative z-10">
+        <div className="relative z-10 ">
           <Hero />
         </div>
 
-        <div id="about" className="w-full relative z-10">
+        <div id="about" className="w-full bg-[#1a1a1a] z-10">
           <AboutMe />
         </div>
         <div
           id="certificates"
-          className="w-full relative z-20 bg-[#252422]"
+          className="w-full z-20 bg-[#252422]"
         >
           <Certificates />
         </div>

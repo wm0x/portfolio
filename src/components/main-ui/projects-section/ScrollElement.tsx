@@ -58,7 +58,7 @@ function ScrollElement() {
   ];
 
   return (
-    <div className="bg-[#171717] w-full overflow-hidden">
+    <div className="bg-[#1a1a1a] w-full overflow-hidden">
       <section
         className="max-w-5xl mx-auto px-4 pt-32 pb-20 relative z-10"
         dir="rtl"
