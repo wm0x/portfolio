@@ -7,7 +7,6 @@ export const ThemeSwitcherButton = () => {
   const [theme, setTheme] = React.useState<"light" | "dark">("light");
 
   const toggleTheme = (e: React.MouseEvent) => {
-    // 1. يمنع انتشار الضغطة للـ Navbar أو أي عنصر أب
     e.stopPropagation(); 
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
@@ -38,11 +37,9 @@ export const ThemeSwitcherButton = () => {
             theme === "light" ? "opacity-100" : "opacity-0",
           )}
         />
-        {/* دائرة الكسوف (Moon Mask) */}
         <span
           className={cn(
             "absolute top-0 right-0 z-20 size-4 origin-top-right transform-gpu rounded-full bg-[#1C0770] transition-transform duration-500", 
-            // جعلت لونها نفس لون خلفية مشروعك (Navy Blue) لتبدو طبيعية
             theme === "dark" ? "scale-100" : "scale-0",
           )}
         />

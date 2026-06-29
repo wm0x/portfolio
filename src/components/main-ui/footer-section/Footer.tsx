@@ -2,8 +2,6 @@
 import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload } from "react-icons/fa";
 
 
-// الألوان المطلوبة
-const PALETTE = ["#fffcf2", "#ccc5b9", "#403d39", "#252422", "#eb5e28"];
 
 export default function FooterSection() {
   return (
@@ -60,8 +58,8 @@ export default function FooterSection() {
                     <ul className="space-y-4">
                       <li>
                         <a
-                          href="/CV-Ali-Alshehri.pdf"
-                          download
+                          href="/pdf/Ali_Alshehri_CV.pdf"
+                          target="_blank"
                           className="group flex items-center gap-2.5 text-sm text-[#ccc5b9] hover:text-[#fffcf2] transition-all duration-200 font-medium bg-[#403d39]/40 px-4 py-2 rounded-lg border border-[#403d39] hover:border-[#eb5e28]/50"
                         >
                           <FaFileDownload className="text-[#eb5e28] text-lg" />
@@ -78,22 +76,11 @@ export default function FooterSection() {
                     <ul className="space-y-4">
                       <li>
                         <a
-                          href="mailto:contact@example.com"
+                          href="mailto:ali@alshehri.work"
                           className="group flex items-center gap-3 text-sm text-[#ccc5b9] hover:text-[#fffcf2] transition-all duration-200"
                         >
                           <FaEnvelope className="text-lg transition-colors duration-200 group-hover:text-[#eb5e28]" />
                           البريد الإلكتروني
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://github.com/wm0x"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="group flex items-center gap-3 text-sm text-[#ccc5b9] hover:text-[#fffcf2] transition-all duration-200"
-                        >
-                          <FaGithub className="text-lg transition-colors duration-200 group-hover:text-[#eb5e28]" />
-                          GitHub
                         </a>
                       </li>
                       <li>
